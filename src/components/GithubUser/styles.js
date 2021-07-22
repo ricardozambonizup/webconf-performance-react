@@ -63,8 +63,34 @@ export const Right = styled.div`
 
     }
 `;
+
 export const Socials = styled.div`
     display: flex;
     gap: 15px;
     margin-top: 15px;
+`;
+
+export const ButtonContainer = styled.button`
+    width: 55px;
+    height: 55px;
+    background-color: #fde65c;
+    padding: 15px;
+    border-radius: 50%;
+    border: none;
+
+    font-size: 20px;
+    cursor: pointer;
+
+    position: absolute;
+    bottom: 90px;
+    right: 20px;
+
+    span {
+        display: block;
+        transform: translateY(-4px);
+    }
+
+    &:active {
+        opacity: .7;
+    }
 `;

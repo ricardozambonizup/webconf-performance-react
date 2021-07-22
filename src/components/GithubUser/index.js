@@ -1,15 +1,32 @@
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from 'react';
 
-import { Container, Left, Right, Socials } from './styles';
+import { Container, Left, Right, Socials, ButtonContainer } from './styles';
 
-export const GithubUser = ({bgColor, textColor}) => {
+export const GithubUser = memo(({bgColor, textColor, getGithubProfile}) => {
     const [gitUser, setGitUser] = useState({});
+    const [userQuery, setUserQuery] = useState('evertonDenis');
+
+    const Zuppers = [ 
+        'LG95', 
+        'joaobranquinhozup', 
+        'ricardojsilva', 
+        'arthurribeirozup', 
+        'rafamsilva', 
+        'evertonDenis', 
+        'ricmaloy',
+        'bleil',
+    ];
+
+    function handleRandomZupper() {
+        const random = Math.floor(Math.random() * 8);
+        setUserQuery(Zuppers[random]);
+    }
 
     useEffect(() => {
-        fetch("https://api.github.com/users/evertonDenis")
+        getGithubProfile(userQuery)
         .then(res =>  res.json())
         .then(data => setGitUser(data))
-    }, []);
+    }, [getGithubProfile, userQuery]);
 
     return (
         <Container bgColor={bgColor} textColor={textColor} >
@@ -33,6 +50,12 @@ export const GithubUser = ({bgColor, textColor}) => {
                 </Socials>
                 <a href={gitUser.html_url}  >Visitar Github</a>
             </Right>
+            <ButtonContainer 
+                onClick={handleRandomZupper}
+                style={{backgroundColor: bgColor}}
+            >
+                <span>❓</span>
+            </ButtonContainer>
         </Container>
     )
-}
+});
