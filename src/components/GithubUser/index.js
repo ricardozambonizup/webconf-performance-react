@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 
 import { Container, Left, Right, Socials } from './styles';
 
-export const GithubUser = ({bgColor, textColor}) => {
+export const GithubUser = memo(({bgColor, textColor}) => {
     const [gitUser, setGitUser] = useState({});
 
     useEffect(() => {
@@ -35,4 +35,4 @@ export const GithubUser = ({bgColor, textColor}) => {
             </Right>
         </Container>
     )
-}
+});
